@@ -11,6 +11,11 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@app.route('/get_reviews')
+def get_reviews():
+    return render_template('reviews.html', reviews=mongo.db.reviews.find())
+
+
 @app.route('/get_users')
 def get_users():
     return render_template('users.html', users=mongo.db.users.find())
@@ -25,7 +30,19 @@ def add_user():
 def insert_user():
     users = mongo.db.users
     users.insert_one(request.form.to_dict())
-    return redirect(url_for('get_users'))
+    return redirect(url_for('add_review'))
+
+
+@app.route('/add_review')
+def add_review():
+    return render_template('addreview.html')
+
+
+@app.route('/insert_review', methods=['POST'])
+def insert_review():
+    reviews = mongo.db.reviews
+    reviews.insert_one(request.form.to_dict())
+    return redirect(url_for('get_reviews'))
 
 
 if __name__ == '__main__':
