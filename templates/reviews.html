@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">      
+{% for review in reviews %}
+    <div class="col s12 m5">
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="{{ review.cover }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h5>{{ review.title }}</h5>
+                    <p>{{ review.author }}</p>
+                    <p>{{ review.category }}</p>
+                    <p>{{ review.rating }}</p>
+                    <p>{{ review.review }}</p>
+                </div>
+            </div>
+            <div class="card-action">
+                <a href="#">This is a link</a>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
