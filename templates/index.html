@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+<h4>Welcome to the book review website</h4>
+<br>
+<div>
+    <h5>Sign in to add or edit your reviews</h5>
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+        </div>
+        <a href="{{ url_for('add_review') }}" class="waves-effect waves-light btn">Sign In</a>
+    </form>
+</div>
+<br>
+<div>
+    <h5>Join us</h5>
+    <a href="{{ url_for('add_user') }}" class="waves-effect waves-light btn">Sign Up</a>
+</div>
+<br>
+<div>
+    <h5>Search for reviews</h5>
+    <a href="" class="waves-effect waves-light btn">Search</a>
+</div>
+</div>
+
+{% endblock %}
