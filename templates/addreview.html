@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <h4>Welcome</h4>
-    <br>
-    <h5>Edit your reviews <a href="{{ url_for('get_reviews') }}" class="waves-effect waves-light btn">Edit</a></h5>
-    <br>
-    <h5>Create a new review</h5>
+    <h5>Write a new review</h5>
     <div class="row">
         <form action="{{ url_for('insert_review') }}" method="POST" class="col s12">
             <div class="row">
