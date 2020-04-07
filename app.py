@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, flash
+from flask import Flask, render_template, redirect, request, url_for, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -14,18 +14,6 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-"""@app.route('/login', methods=['GET', 'POST'])
-def login():
-    search = request.args['search']
-    find_user = mongo.db.users.find({'$text': {'$search': search}})
-    if find_user:
-        return redirect(url_for('reviews'))
-    else:
-        flash('Email address not found, please ceate an account')
-        return redirect(url_for('create_user'))
-    return render_template('create_user.html')"""
 
 
 @app.route('/get_reviews')
