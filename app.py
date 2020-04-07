@@ -1,11 +1,12 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'projectDB'
-app.config["MONGO_URI"] = os.getenv('MONGO_URI','mongodb+srv://root:r00tUser@myFirstCluster-yilmx.mongodb.net/projectDB?retryWrites=true&w=majority')
+app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:r00tUser@myFirstCluster-yilmx.mongodb.net/projectDB?retryWrites=true&w=majority')
+
 
 mongo = PyMongo(app)
 
@@ -13,6 +14,18 @@ mongo = PyMongo(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+"""@app.route('/login', methods=['GET', 'POST'])
+def login():
+    search = request.args['search']
+    find_user = mongo.db.users.find({'$text': {'$search': search}})
+    if find_user:
+        return redirect(url_for('reviews'))
+    else:
+        flash('Email address not found, please ceate an account')
+        return redirect(url_for('create_user'))
+    return render_template('create_user.html')"""
 
 
 @app.route('/get_reviews')
@@ -74,7 +87,20 @@ def update_review(review_id):
 @app.route('/delete_review/<review_id>')
 def delete_review(review_id):
     mongo.db.reviews.remove({'_id': ObjectId(review_id)})
-    return redirect(url_for('get_reviews'))    
+    return redirect(url_for('get_reviews'))
+
+
+@app.route('/search')
+def search():
+    return render_template('findreviews.html')
+
+
+@app.route('/find_reviews')
+def find_reviews():
+    query = request.args.get('query')
+    results = mongo.db.reviews.find(
+        {"title": {"$regex": query}})
+    return render_template('searchresults.html', reviews=results)
 
 
 if __name__ == '__main__':

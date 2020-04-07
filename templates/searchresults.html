@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m8">
+            <h4>Search results</h4>
+        </div>
+{% for review in reviews %}
+        <div class="col s12 m7">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img src="{{ review.cover }}">
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <h5>{{ review.title }}</h5>
+                        <p>{{ review.author }}</p>
+                        <p>{{ review.category }}</p>
+                        <p>{{ review.rating }}</p>
+                        <p>{{ review.review }}</p>
+                    </div>
+                </div>
+                <div class="card-action">
+                     <a href="#" class="waves-effect waves-light btn btn_small">Buy</a>
+                </div>
+            </div>
+        </div>
+  {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
