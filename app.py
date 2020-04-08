@@ -18,9 +18,16 @@ def index():
 
 @app.route('/get_reviews')
 def get_reviews():
-    username = request.args.get('username')
-    results = mongo.db.reviews.find({"username": {"$regex": username}})
-    return render_template('reviews.html', reviews=results, username=username)
+    email = request.args.get('email')
+    user = mongo.db.users.find_one({'email': email})
+    if user:
+        for k, v in user.items():
+            if k == 'username':
+                username = v
+        results = mongo.db.reviews.find({"username": {"$regex": username}})
+        return render_template('reviews.html', reviews=results, username=username)
+    else:
+        return render_template('adduser.html')
 
 
 @app.route('/get_users')
@@ -63,7 +70,7 @@ def update_review(review_id):
     reviews = mongo.db.reviews
     reviews.update({'_id': ObjectId(review_id)},
     {
-        'email': request.form.get('email'),
+        'username': request.form.get('username'),
         'title': request.form.get('title'),
         'author': request.form.get('author'),
         'category': request.form.get('category'),
