@@ -4,37 +4,39 @@
 <div class="container">
     <div class="row">
         <div class="col s12 m8">
-            <h4>Welcome </h4>
+            <h4>Welcome {{ username}}</h4>
         </div>
         <div class="col s12 m4">
             <a href="{{ url_for('add_review') }}" class="waves-effect waves-light btn">New review</a>  
         </div>
+    </div>
 {% for review in reviews %}
-        <div class="col">
-            <div class="card horizontal">
-                <div class="card-image">
-                    <img src="{{ review.cover }}">
-                    <div>
-                        <a href="{{url_for('edit_review', review_id=review._id)}}" class="waves-effect waves-light btn">Edit</a>
-                        <a href="{{url_for('delete_review', review_id=review._id)}}" class="waves-effect waves-light btn">Delete</a>
-                    </div>
+    <div class="col s12 m7">
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="{{ review.cover }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h5>{{ review.title }}</h5>
+                    <p>Reviewed by:</p>
+                    <p>{{ review.author }}</p>
+                    <p>{{ review.category }}</p>
+                    <p>{{ review.rating }}</p>
+                    <p>{{ review.review }}</p>
+                    <br>
                 </div>
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <h5>{{ review.title }}</h5>
-                        <p>{{ review.author }}</p>
-                        <p>{{ review.category }}</p>
-                        <p>{{ review.rating }}</p>
-                        <p>{{ review.review }}</p>
+                <div class="row">
+                        <a href="{{ url_for('edit_review', review_id=review._id) }}" class="waves-effect waves-light btn btn_small">Edit</a>
+                        <a href="{{ url_for('delete_review', review_id=review._id) }}" class="waves-effect waves-light btn btn_small">Delete</a>
                     </div>
-                </div>
                 <div class="card-action">
-                    <a href="#">This is a link</a>
+                    <a href="#" class="waves-effect waves-light btn btn_small">Buy</a>
                 </div>
             </div>
         </div>
-  {% endfor %}
     </div>
+  {% endfor %}
 </div>
 
 {% endblock %}
