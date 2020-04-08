@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'projectDB'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb+srv://root:r00tUser@myFirstCluster-yilmx.mongodb.net/projectDB?retryWrites=true&w=majority')
+app.secret_key = 'secretkey123'
 
 
 mongo = PyMongo(app)
@@ -27,7 +28,8 @@ def get_reviews():
         results = mongo.db.reviews.find({"username": {"$regex": username}})
         return render_template('reviews.html', reviews=results, username=username)
     else:
-        return render_template('adduser.html')
+        flash('Email not found, would you like to sign up?')
+        return render_template('index.html')
 
 
 @app.route('/get_users')

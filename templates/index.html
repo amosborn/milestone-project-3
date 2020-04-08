@@ -15,6 +15,16 @@
             </button>
     </form>
     <br><br>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li><strong>{{ message }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    <br>
     <div>
         <h5>Join the bookclub</h5>
         <a href="{{ url_for('add_user') }}" class="waves-effect waves-light btn">Sign Up</a>
