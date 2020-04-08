@@ -18,7 +18,9 @@ def index():
 
 @app.route('/get_reviews')
 def get_reviews():
-    return render_template('reviews.html', reviews=mongo.db.reviews.find())
+    username = request.args.get('username')
+    results = mongo.db.reviews.find({"username": {"$regex": username}})
+    return render_template('reviews.html', reviews=results, username=username)
 
 
 @app.route('/get_users')
