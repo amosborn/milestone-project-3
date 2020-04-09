@@ -12,37 +12,51 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="title" name="title" type="text" class="validate" value="{{review.title}}">
+                    <input id="title" name="title" type="text" class="validate" value="{{review.title}}" required>
                     <label for="title">Title</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="author" name="author" type="text" class="validate" value="{{review.author}}">
+                    <input id="author" name="author" type="text" class="validate" value="{{review.author}}" required>
                     <label for="author">Author</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="category" name="category" type="text" class="validate" value="{{review.category}}">
-                    <label for="category">Category</label>
+                    <select id="category" name="category" class="validate"  value="{{review.category}}" required>
+                        <option selected>{{review.category}}</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Thriler">Thriller</option>
+                        <option value="History">History</option>
+                    </select>
+                    <label>Category</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="rating" name="rating" type="text" class="validate" value="{{review.rating}}">
+                    <select id="rating" name="rating" type="text" class="validate" value="{{review.rating}}" required>
+                        <option selected>{{review.rating}}</option>
+                        <option value="*****"><strong>*****</strong></option>
+                        <option value="****"><strong>****</strong></option>
+                        <option value="***"><strong>***</strong></option>
+                        <option value="**"><strong>**</strong></option>
+                        <option value="*"><strong>*</strong></option>
+                    </select>
                     <label for="rating">Rating</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="cover" name="cover" type="text" class="validate" value="{{review.cover}}">
+                    <input id="cover" name="cover" type="text" class="validate" value="{{review.cover}}" required>
                     <label for="cover">Cover Image Link</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="review" name="review" type="text" class="validate" value="{{review.review}}">
+                    <input id="review" name="review" type="text" class="validate" value="{{review.review}}" required>
                     <label for="review">Review</label>
                 </div>
             </div>
