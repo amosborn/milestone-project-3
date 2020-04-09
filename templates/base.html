@@ -16,12 +16,12 @@
                 <a href="{{ url_for('index') }}" class="brand-logo">Logo</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse sidenav sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="">Search Reviews</a></li>
+                    <li><a href="{{ url_for('search') }}">Search Reviews</a></li>
                     <li><a href="{{ url_for('add_user') }}">Sign Up</a></li>
                     <li><a href="{{ url_for('index') }}">Sign In</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="">Search</a></li>
+                    <li><a href="{{ url_for('search') }}">Search</a></li>
                     <li><a href="{{ url_for('add_user') }}">Sign Up</a></li>
                     <li><a href="{{ url_for('index') }}">Sign In</a></li>  
                 </ul>
@@ -34,7 +34,7 @@
         {% endblock %}
     </main>
 
-    <footer class="page-footer">
+    <footer id="footer" class="page-footer">
         <div class="footer-copyright">
             <div class="container">
                 © 2020 Copyright
@@ -46,6 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $('select').material_select();
             $('.sidenav').sideNav();
         });
     </script>
