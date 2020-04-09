@@ -20,6 +20,15 @@
                 <label for="usernamel">Username</label>
             </div>
         </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li><strong>{{ message }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         <div class="row">
             <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate" required>
