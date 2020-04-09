@@ -68,9 +68,12 @@ def add_review():
 
 @app.route('/insert_review', methods=['POST'])
 def insert_review():
-    reviews = mongo.db.reviews
-    reviews.insert_one(request.form.to_dict())
-    return redirect(url_for('get_reviews'))
+    if request.method == 'POST':
+        reviews = mongo.db.reviews
+        reviews.insert_one(request.form.to_dict())
+        username = request.form.get('username')
+        results = mongo.db.reviews.find({'username': {'$regex': username}})
+    return render_template('reviews.html', reviews=results, username=username)
 
 
 @app.route('/edit_review/<review_id>')
