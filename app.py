@@ -44,8 +44,20 @@ def add_user():
 
 @app.route('/insert_user', methods=['POST'])
 def insert_user():
-    users = mongo.db.users
-    users.insert_one(request.form.to_dict())
+    if request.method == 'POST':
+        email = request.form.get('email')
+        username = request.form.get('username')
+        used_email = mongo.db.users.find_one({'email': email})
+        used_username = mongo.db.users.find_one({'username': username})
+        if used_username is not None:
+            flash('Username already taken, please choose another.')
+            return render_template('adduser.html')
+        elif used_email is not None:
+            flash('Email already registered, would you like to sign in?')
+            return render_template('index.html')
+        else:
+            users = mongo.db.users
+            users.insert_one(request.form.to_dict())
     return redirect(url_for('add_review'))
 
 
@@ -97,8 +109,7 @@ def search():
 @app.route('/find_reviews')
 def find_reviews():
     query = request.args.get('query')
-    results = mongo.db.reviews.find(
-        {"title": {"$regex": query}})
+    results = mongo.db.reviews.find({"title": {"$regex": query}})
     return render_template('searchresults.html', reviews=results)
 
 
