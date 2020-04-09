@@ -95,7 +95,9 @@ def update_review(review_id):
         'cover': request.form.get('cover'),
         'review': request.form.get('review')
     })
-    return redirect(url_for('get_reviews'))
+    username = request.form.get('username')
+    results = mongo.db.reviews.find({'username': {'$regex': username}})
+    return render_template('reviews.html', reviews=results, username=username)
 
 
 @app.route('/delete_review/<review_id>')
