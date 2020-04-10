@@ -17,7 +17,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/get_reviews')
+@app.route('/get_reviews', methods=['GET', 'POST'])
 def get_reviews():
     email = request.args.get('email')
     user = mongo.db.users.find_one({'email': email})
@@ -30,6 +30,9 @@ def get_reviews():
     else:
         flash('Email not found, would you like to sign up?')
         return render_template('index.html')
+
+    if request.method == 'POST':
+        session['username'] = username
 
 
 @app.route('/get_users')
@@ -114,7 +117,8 @@ def search():
 @app.route('/find_reviews')
 def find_reviews():
     query = request.args.get('query')
-    results = mongo.db.reviews.find({"title": {"$regex": query}})
+    searchby = request.args.get('searchby')
+    results = mongo.db.reviews.find({searchby: {"$regex": query}})
     return render_template('searchresults.html', reviews=results)
 
 

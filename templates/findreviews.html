@@ -3,16 +3,28 @@
 <div class="container">
     <h4>Search Reviews</h4>
     <br>
-     <form action="{{ url_for('find_reviews') }}" class="col s12">
-      <div class="row">
-        <div class="input-field col s12">
-          <input placeholder="Enter search" name="query" id="query" type="text" class="validate">
-          <label for="title"></label>
+    <form action="{{ url_for('find_reviews') }}" class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <select id="searchby" name="searchby" class="validate">
+                    <option value="" disabled selected>Search by:</option>
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="category">Category</option>
+                    <option value="username">Reviewer</option>
+                </select>
+                <label>Category</label>
+            </div>
         </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input placeholder="Enter search" name="query" id="query" type="text" class="validate">
+                <label for="query"></label>
+            </div>
         </div>
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
+            <i class="material-icons right">send</i>
         </button>
-        </form>  
-  </div>
+    </form>  
+</div>
 {% endblock %}
