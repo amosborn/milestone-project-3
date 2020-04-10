@@ -7,10 +7,10 @@
             <h4>Search results</h4>
         </div>
 {% for review in reviews %}
-        <div class="col s12 m7">
-            <div class="card horizontal">
+        <div class="col s12 m8">
+            <div class="card horizontal card-small">
                 <div class="card-image">
-                    <img src="{{ review.cover }}">
+                    <img class="review-image" src="{{ review.cover }}">
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">
@@ -21,10 +21,11 @@
                         <p><strong>Rating: </strong>{{ review.rating }}</p>
                         <p>{{ review.review }}</p>
                     </div>
-                </div>
-                <div class="card-action">
+                    <div class="card-action">
                      <a href="#" class="waves-effect waves-light btn btn_small">Buy</a>
                 </div>
+                </div>
+                
             </div>
         </div>
   {% endfor %}
