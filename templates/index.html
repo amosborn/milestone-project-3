@@ -2,8 +2,13 @@
 {% block content %}
 
 <div class="container">
-<h4>Welcome to the book review website</h4>
-<br>
+<div class="row">
+<div class="col bgimage">
+    <h4>Welcome to our book review website</h4>
+    <br>
+    </div>
+</div>
+<div class="container">
     <h5>Sign in to add or edit your reviews</h5>
     <form class="col s12" action="{{ url_for('get_reviews') }}" methods="POST">
             <div class="input-field col s12">
