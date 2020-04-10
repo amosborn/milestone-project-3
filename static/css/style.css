@@ -7,3 +7,32 @@ body {
   main {
     flex: 1 0 auto;
   }
+
+/*--------------Home page*/
+
+.bgimage {
+    height: 70vh;
+    width: 100%;
+    background-image: url('../images/books.jpeg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    position: relative; 
+}
+
+/*------------------Review cards*/
+
+.review-image {
+   height: 200px;
+}
+
+  .btn_small {
+    height: 25px;
+    width: 70px;
+    line-height: 25px;
+    margin: 5px 5px;
+    padding: 0 0.5em;
+}
+
